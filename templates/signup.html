@@ -1,0 +1,34 @@
+{% include "head.html" %}
+<body>
+    <div class="container">
+        <br>
+        <h1>Auto Notification Service</h1>
+        <h2>Signup</h2>
+        <form action="" method="post" enctype="multipart/form-data">
+            <div class="input-group mb-3">
+                <div class="input-group-text">
+                    <span><i class="fa fa-envelope"></i></span>
+                </div>
+                <input type="email" class="form-control" name="email" id="email" placeholder="Email">
+            </div>
+            <div class="input-group mb-3">
+                <div class="input-group-text">
+                    <span><i class="fa fa-lock"></i></span>
+                </div>
+                <input type="password" class="form-control" name="password" id="password" placeholder="Password">
+            </div>
+            <div class="form-group margin-top row">
+                <div class="mb-3">
+                    <label for="schedule" class="form-label">Upload Schedule</label>
+                    <input class="form-control" type="file" id="schedule" name="schedule">
+                </div>
+            </div>
+            <a href="/static/template.csv">The template is available here</a><br><br>
+            <button class="btn btn-primary">Signup</button>
+            <a href="/cancel"><button type="button" class="btn btn-warning">Want to cancel?</button></a>
+        </form>
+        <br>
+        {% include "getnotif.html" %}
+    </div>
+    {% include "footer.html" %}
+</body>

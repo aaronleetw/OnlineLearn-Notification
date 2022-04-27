@@ -1,0 +1,36 @@
+{% include "head.html" %}
+<body>
+    <div class="container">
+        <br>
+        <h1>Auto Notification Service</h1>
+        <h2>Obtain notification permission</h2>
+        <p>Thanks for signing up! Just allow us to send you notifications!</p>
+        <h2 style="color: green;" id="notif"></h2>
+        <button class="btn btn-primary" onclick="reqNotif()">Click this button to allow notifications! Click "Allow" or "Continue" after this!</button>
+        <br>
+        {% include "getnotif.html" %}
+    </div>
+    <script>
+        async function reqNotif() {
+            const status = Notification.requestPermission();
+            const res = await fetch("/vapidkey");
+            const data = await res.text();
+            sub = await swRegistration.pushManager.subscribe({
+                userVisibleOnly: true,
+                applicationServerKey: data
+            });
+            const epoint = await fetch("/storeendpoint", {
+                body: JSON.stringify({ sub: sub.toJSON() }),
+                headers: {
+                "Content-Type": "application/json",
+                },
+                method: "POST",
+            });
+            const epointd = await epoint.text();
+            if (epointd == "ok") {
+                document.getElementById("notif").textContent = "OK!"
+            }
+        }
+    </script>
+    {% include "footer.html" %}
+</body>

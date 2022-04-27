@@ -1,0 +1,15 @@
+{% with messages = get_flashed_messages() %}
+{% if messages %}
+{% for message in messages %}
+{% if message[:4] == 'SUCC' %}
+<div class="alert alert-success margin-top" role="alert">
+    {% autoescape false %}{{message[5:]}}{% endautoescape %}
+</div>
+{% else %}
+<div class="alert alert-danger margin-top" role="alert">
+    {% autoescape false %}{{message}}{% endautoescape %}
+</div>
+{% endif %}
+{% endfor %}
+{% endif %}
+{% endwith %}

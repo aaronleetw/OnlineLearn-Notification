@@ -1,5 +1,3 @@
-from re import sub
-from django.shortcuts import render
 from functions import *
 
 @app.route('/cancel', methods=['GET', 'POST'])

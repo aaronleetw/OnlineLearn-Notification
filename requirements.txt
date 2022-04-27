@@ -20,3 +20,5 @@ pytz == 2020.1
 
 # OnlineLearnNotif/functions.py: 9
 pywebpush == 1.14.0
+
+gunicorn == 20.1.0

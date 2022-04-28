@@ -8,10 +8,10 @@ from dotenv import load_dotenv
 import pandas as pd
 from pywebpush import webpush
 
+load_dotenv()
 app = Flask(__name__)
 app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY')
 
-load_dotenv()
 tz = pytz.timezone(os.environ.get('TIMEZONE'))
 
 PERIODS = {

@@ -124,8 +124,8 @@ def storeendpoint():
 def sendNotif():
     session.clear()
     # get current time
-    now = datetime.now().strftime('%H:%M')
-    # set time to 7:55am
+    now = datetime.now(tz).strftime('%H:%M')
+    period = '9'
     for key, value in PERIODS.items():
         if now <= value:
             period = key

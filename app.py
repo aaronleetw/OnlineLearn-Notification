@@ -32,6 +32,10 @@ def signup():
         password = genHash(request.form['password'])
         db = refresh_db()
         cursor = db.cursor()
+        cursor.execute("SELECT id FROM users WHERE email = %s", (email,))
+        if cursor.fetchone() != None:
+            flash("Error. Your email was already registered with us.")
+            return redirect('/')
         cursor.execute("INSERT INTO users (email, password) VALUES (%s, %s)", (email, password))
         db.commit()
         cursor.close()

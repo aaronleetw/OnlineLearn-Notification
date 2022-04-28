@@ -46,7 +46,7 @@ self.addEventListener("push", (event) => {
   // Double check the push event
   json = event.data.json();
   self.registration.showNotification(json['title'], {
-    "body": "Join meeting!",
+    "body": json['link'],
     data: {
       "link": json['link'],
     },

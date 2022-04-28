@@ -5,8 +5,9 @@
         <h1>Auto Notification Service</h1>
         <h2>Obtain notification permission</h2>
         <p>Thanks for signing up! Just allow us to send you notifications!</p>
+        <h2 style="color: red" id="notdone">Your signup is not complete yet. Please click the bottom below.</h2>
         <h2 style="color: green;" id="notif"></h2>
-        <button class="btn btn-primary" onclick="reqNotif()">Click this button to allow notifications! Click "Allow" or "Continue" after this!</button>
+        <button class="btn btn-primary" onclick="reqNotif()" id="button">Click this button to allow notifications! Click "Allow" or "Continue" after this!</button>
         <br>
         {% include "getnotif.html" %}
     </div>
@@ -28,7 +29,9 @@
             });
             const epointd = await epoint.text();
             if (epointd == "ok") {
-                document.getElementById("notif").textContent = "OK!"
+                document.getElementById("notdone").textContent = "";
+                document.getElementById("notif").textContent = "OK! You will now recieve notifications. Please close this window."
+                document.getElementById("button").disabled = true;
             }
         }
     </script>

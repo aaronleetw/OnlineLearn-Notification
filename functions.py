@@ -38,9 +38,3 @@ def genHash(password):
 
 def verifyPassword(password, hash):
     return sha256_crypt.verify(password, hash)
-
-def isLogin():
-    return ('is_logged_in' in session and
-            'loginTime' in session and
-            session['is_logged_in'] == True and
-            (datetime.now(tz) - session['loginTime']).total_seconds() < int(os.environ.get('LOGIN_TIMEOUT')))

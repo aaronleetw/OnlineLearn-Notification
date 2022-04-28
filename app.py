@@ -2,8 +2,6 @@ from functions import *
 
 @app.route('/cancel', methods=['GET', 'POST'])
 def index():
-    if isLogin():
-        return redirect('/manage')
     session.clear()
     if request.method == 'POST':
         email = request.form['email']
@@ -17,15 +15,13 @@ def index():
             cursor.execute("DELETE FROM schedule WHERE user_id = %s", (user[0],))
             db.commit()
             flash("SUCC-We've cancelled your notifications.")
-            return redirect('/')
+            return render_template('signup.html')
         else:
             flash("User not found.")
     return render_template('cancel.html')
 
 @app.route('/', methods=['GET', 'POST'])
 def signup():
-    if isLogin():
-        return redirect('/manage')
     session.clear()
     if request.method == 'POST':
         email = request.form['email']
@@ -35,7 +31,7 @@ def signup():
         cursor.execute("SELECT id FROM users WHERE email = %s", (email,))
         if cursor.fetchone() != None:
             flash("Error. Your email was already registered with us.")
-            return redirect('/')
+            return render_template('signup.html')
         cursor.execute("INSERT INTO users (email, password) VALUES (%s, %s)", (email, password))
         db.commit()
         cursor.close()
